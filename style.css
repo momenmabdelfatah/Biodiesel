@@ -1,0 +1,124 @@
+
+:root {
+    --primary-green: #1faf38;
+    --secondary-green: #0daf25;
+    --light-gray-bg: #f8fafc;
+    --border-color: #e2e8f0;
+    --text-color: #64748b;
+    --text-dark: #334155;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: "Inter", sans-serif;
+    background-color: var(--light-gray-bg);
+}
+
+.layout-wrapper {
+    min-height: 100vh;
+}
+
+.sidebar,
+.offcanvas-start {
+    background-color: #ffffff;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.sidebar {
+    width: 250px;
+}
+
+.offcanvas-start {
+    max-width: 250px;
+}
+
+.nav-link.sidebar-link {
+    color: var(--text-color);
+    font-weight: 500;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    margin-bottom: 0.25rem;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.nav-link.sidebar-link:hover {
+    background-color: var(--light-gray-bg);
+    color: #1FAF38;
+}
+
+.nav-link.sidebar-link.active {
+    color: var(--primary-green);
+    font-weight: 600;
+}
+
+.nav-link.sidebar-link.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background-color: var(--primary-green);
+    border-radius: 0 4px 4px 0;
+}
+
+.main-content-header {
+    background-color: #ffffff;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.search-input {
+    background-color: var(--light-gray-bg);
+    border: 1px solid var(--light-gray-bg);
+    border-radius: 50rem !important;
+}
+
+.search-input:focus {
+    background-color: #ffffff;
+    border-color: var(--primary-green);
+    box-shadow: none;
+}
+
+.search-icon {
+    color: var(--text-color);
+}
+
+.header-icon-link {
+    color: var(--text-color);
+    font-size: 1.25rem;
+}
+
+.header-icon-link:hover {
+    color: var(--primary-green);
+}
+
+.mobile-menu-btn {
+    color: var(--primary-green) !important;
+}
+
+.content-box {
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 1rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    .content-box {
+        padding: 1rem;
+        border-radius: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .content-box {
+        padding: 0.75rem;
+        border-radius: 0.5rem;
+    }
+}
