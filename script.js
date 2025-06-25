@@ -1,8 +1,14 @@
+/* ======================
+   DOCUMENT READY HANDLER
+   ====================== */
 document.addEventListener('DOMContentLoaded', () => {
-  // Counter animation on scroll
+  
+  /* ======================
+     COUNTER ANIMATION
+     ====================== */
   const counters = document.querySelectorAll('.counter');
-  const duration = 6000;
-  const frameRate = 30;
+  const duration = 2000;
+  const frameRate = 1000 / 60; // 60fps
 
   const animateCounter = (counter) => {
     const target = +counter.getAttribute('data-target');
@@ -13,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
       count += increment;
       if (count < target) {
         counter.innerText = Math.floor(count).toLocaleString();
-        setTimeout(updateCounter, frameRate);
+        requestAnimationFrame(updateCounter);
       } else {
         counter.innerText = target.toLocaleString();
       }
@@ -22,25 +28,40 @@ document.addEventListener('DOMContentLoaded', () => {
     updateCounter();
   };
 
-  // Observe cards to trigger counter animation when in view
+  /* ======================
+     INTERSECTION OBSERVER
+     ====================== */
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        
         const counter = entry.target.querySelector('.counter');
-        if (counter) animateCounter(counter);
+        if (counter) {
+          animateCounter(counter);
+        }
+
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.5 });
+  }, {
+    threshold: 0.1
+  });
 
-  document.querySelectorAll('.card').forEach(card => observer.observe(card));
+  // Observe elements
+  document.querySelectorAll('.hero-section, .card').forEach(element => {
+    observer.observe(element);
+  });
 
-  // Sidebar navigation active state toggle
+  /* ======================
+     SIDEBAR NAVIGATION
+     ====================== */
   const sidebarLinks = document.querySelectorAll('.sidebar-link');
   sidebarLinks.forEach(link => {
-    link.addEventListener('click', () => {
+    link.addEventListener('click', (e) => {
       sidebarLinks.forEach(l => l.classList.remove('active'));
       link.classList.add('active');
     });
   });
+
 });
